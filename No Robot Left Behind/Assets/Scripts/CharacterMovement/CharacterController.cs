@@ -50,27 +50,20 @@ public class CharacterController : MonoBehaviour
         }
     }
 
-    public void Move(Direction dir)
+    public void ResetMovement()
     {
-        switch (dir)
-        {
-            case Direction.Up:
-                MoveVector = Vector3.forward * Speed * Time.fixedDeltaTime;
-                break;
-            case Direction.Down:
-                MoveVector = -Vector3.forward * Speed * Time.fixedDeltaTime;
-                break;
-            case Direction.Left:
-                MoveVector = -Vector3.right * Speed * Time.fixedDeltaTime;
-                break;
-            case Direction.Right:
-                MoveVector = Vector3.right * Speed * Time.fixedDeltaTime;
-                break;
-            default:
-                break;
-        }
-        
-        Rigidbody.AddForce(MoveVector * 500);
+        MoveVector = Vector3.zero;
+    }
+
+    public void Move(Vector3 dir)
+    {
+        MoveVector += dir;
+    }
+
+    public void ApplyMovement()
+    {
+        MoveVector = MoveVector.sqrMagnitude > 1 ? MoveVector.normalized : MoveVector;
+        Rigidbody.AddForce(MoveVector * Speed * Time.fixedDeltaTime * 700);
     }
 
     private void OnDrawGizmos()

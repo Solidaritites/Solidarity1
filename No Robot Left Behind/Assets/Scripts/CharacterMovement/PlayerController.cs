@@ -14,11 +14,23 @@ public class PlayerController : MonoBehaviour
         }
     }
     private int ActiveCharacterIdx;
+    private Vector3 PreviousMousePos;
+    private Vector3 MousePos;
 
     public bool AllActive { get; private set; }
 
     private void Update()
     {
+        if (Input.GetMouseButtonDown(1))
+        {
+            MousePos = Input.mousePosition;
+            MousePos.z = MousePos.y;
+            MousePos.y = 0;
+            PreviousMousePos = Input.mousePosition;
+            PreviousMousePos.z = PreviousMousePos.y;
+            PreviousMousePos.y = 0;
+        }
+
         if (Input.GetKeyDown(KeyCode.Escape)
                 || Input.GetKeyDown(KeyCode.P))
         {
@@ -51,7 +63,8 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         if (Input.GetKey(KeyCode.LeftShift)
-            || Input.GetKey(KeyCode.RightShift))
+            || Input.GetKey(KeyCode.RightShift)
+            || Input.GetMouseButton(0))
         {
             foreach (CharacterController character in Characters)
             {
@@ -68,26 +81,47 @@ public class PlayerController : MonoBehaviour
 
     private void DetermineCharacterMovement(CharacterController character)
     {
+        bool usingKeys = false;
+
+        character.ResetMovement();
+
         if (Input.GetKey(KeyCode.LeftArrow)
             || Input.GetKey(KeyCode.A))
         {
-            character.Move(Direction.Left);
+            character.Move(Vector3.left);
+            usingKeys = true;
         }
         if (Input.GetKey(KeyCode.RightArrow)
             || Input.GetKey(KeyCode.D))
         {
-            character.Move(Direction.Right);
+            character.Move(Vector3.right);
+            usingKeys = true;
         }
         if (Input.GetKey(KeyCode.UpArrow)
             || Input.GetKey(KeyCode.W))
         {
-            character.Move(Direction.Up);
+            character.Move(Vector3.forward);
+            usingKeys = true;
         }
         if (Input.GetKey(KeyCode.DownArrow)
             || Input.GetKey(KeyCode.S))
         {
-            character.Move(Direction.Down);
+            character.Move(Vector3.back);
+            usingKeys = true;
         }
+        if (!usingKeys && Input.GetMouseButton(1))
+        {
+            MousePos = Input.mousePosition;
+            MousePos.z = MousePos.y;
+            MousePos.y = 0;
+            character.Move(MousePos - PreviousMousePos);
+            if ((MousePos - PreviousMousePos).sqrMagnitude != 0)
+            {
+                PreviousMousePos = MousePos;
+            }
+        }
+
+        character.ApplyMovement();
     }
 
     private void DetermineActiveCharacter()

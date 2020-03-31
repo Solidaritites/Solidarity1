@@ -13,22 +13,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SimpleSelectedItems:
-    m_Keys:
-    - Packages/manifest.json
-    - ProjectSettings/AudioManager.asset
-    - ProjectSettings/DynamicsManager.asset
-    - ProjectSettings/EditorBuildSettings.asset
-    - ProjectSettings/EditorSettings.asset
-    - ProjectSettings/GraphicsSettings.asset
-    - ProjectSettings/NavMeshAreas.asset
-    - ProjectSettings/Physics2DSettings.asset
-    - ProjectSettings/PresetManager.asset
-    - ProjectSettings/ProjectSettings.asset
-    - ProjectSettings/QualitySettings.asset
-    - ProjectSettings/UnityConnectSettings.asset
-    - ProjectSettings/VFXManager.asset
-    - 
-    m_Values: 0101010101010101010101010101
+    m_Keys: []
+    m_Values: 
   RevisionSummary: 
   ChangesSearchValue: 
   SelectedHistoryRevision: 
