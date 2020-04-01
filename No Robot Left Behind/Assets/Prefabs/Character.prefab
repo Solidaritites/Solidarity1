@@ -4923,6 +4923,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09e7bac22d4038247823b873a3f94b6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaskLayer: 8
   Speed: 10
   Rigidbody: {fileID: 6671160277242453807}
   Model: {fileID: 0}

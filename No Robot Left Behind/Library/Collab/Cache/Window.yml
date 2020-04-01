@@ -13,9 +13,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SimpleSelectedItems:
-    m_Keys: []
-    m_Values: 
-  RevisionSummary: 
+    m_Keys:
+    - Assets/Materials/Transparent.mat
+    - Assets/Materials/Transparent.mat.meta
+    - Assets/Prefabs/Character.prefab
+    - Assets/Prefabs/GameManager.prefab
+    - Assets/Prefabs/ReactorText.prefab
+    - Assets/Scenes/Tutorial.unity
+    - Assets/Scripts/CharacterMovement/CharacterController.cs
+    - Assets/Scripts/CharacterMovement/PlayerController.cs
+    - Packages/manifest.json
+    - ProjectSettings/DynamicsManager.asset
+    - ProjectSettings/TagManager.asset
+    - 
+    m_Values: 010101010001010100010100
+  RevisionSummary: added mouse controls
   ChangesSearchValue: 
   SelectedHistoryRevision: 
   HistoryPageNumber: 0

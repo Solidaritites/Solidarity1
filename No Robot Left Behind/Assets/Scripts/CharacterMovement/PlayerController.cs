@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public GameObject RaycastCollider;
+    public Camera Camera;
     public CharacterController[] Characters;
     public CharacterController ActiveCharacter
     {
@@ -14,25 +16,14 @@ public class PlayerController : MonoBehaviour
         }
     }
     private int ActiveCharacterIdx;
-    private Vector3 PreviousMousePos;
-    private Vector3 MousePos;
+    private Vector3 RaycastColliderPos;
 
     public bool AllActive { get; private set; }
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(1))
-        {
-            MousePos = Input.mousePosition;
-            MousePos.z = MousePos.y;
-            MousePos.y = 0;
-            PreviousMousePos = Input.mousePosition;
-            PreviousMousePos.z = PreviousMousePos.y;
-            PreviousMousePos.y = 0;
-        }
-
         if (Input.GetKeyDown(KeyCode.Escape)
-                || Input.GetKeyDown(KeyCode.P))
+            || Input.GetKeyDown(KeyCode.P))
         {
             if (Time.timeScale == 1)
             {
@@ -62,24 +53,29 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        Vector3 pos = (Characters[0].transform.position + Characters[1].transform.position + Characters[2].transform.position) / 3f;
+
         if (Input.GetKey(KeyCode.LeftShift)
             || Input.GetKey(KeyCode.RightShift)
             || Input.GetMouseButton(0))
         {
+            RaycastColliderPos.y = pos.y - 1;
             foreach (CharacterController character in Characters)
             {
-                DetermineCharacterMovement(character);
+                DetermineCharacterMovement(character, pos - Vector3.down);
             }
             AllActive = true;
         }
         else
         {
-            DetermineCharacterMovement(ActiveCharacter);
+            RaycastColliderPos.y = Characters[ActiveCharacterIdx].transform.position.y - 1;
+            DetermineCharacterMovement(ActiveCharacter, ActiveCharacter.transform.position - Vector3.down);
             AllActive = false;
         }
+        RaycastCollider.transform.position = RaycastColliderPos;
     }
 
-    private void DetermineCharacterMovement(CharacterController character)
+    private void DetermineCharacterMovement(CharacterController character, Vector3 controlPoint)
     {
         bool usingKeys = false;
 
@@ -111,13 +107,12 @@ public class PlayerController : MonoBehaviour
         }
         if (!usingKeys && Input.GetMouseButton(1))
         {
-            MousePos = Input.mousePosition;
-            MousePos.z = MousePos.y;
-            MousePos.y = 0;
-            character.Move(MousePos - PreviousMousePos);
-            if ((MousePos - PreviousMousePos).sqrMagnitude != 0)
+            RaycastHit hit;
+            Ray ray = Camera.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out hit, 1000000, LayerMask.GetMask("RobotPlane1")))
             {
-                PreviousMousePos = MousePos;
+                character.Move(hit.point - controlPoint);
             }
         }
 

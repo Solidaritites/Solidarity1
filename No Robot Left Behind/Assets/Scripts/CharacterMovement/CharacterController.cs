@@ -27,9 +27,8 @@ public class CharacterController : MonoBehaviour
     {
         RaycastHit hit;
         Ray ray = new Ray(transform.position, Vector3.down);
-        int layermask = LayerMask.GetMask("Default");
 
-        if (Physics.Raycast(ray, out hit) && (hit.point - transform.position).sqrMagnitude < .9)
+        if (Physics.Raycast(ray, out hit) && hit.collider.gameObject.layer != 8 && (hit.point - transform.position).sqrMagnitude < .9)
         {
             transform.position = hit.point + Vector3.up.normalized;
         }
