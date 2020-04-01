@@ -22,11 +22,12 @@ MonoBehaviour:
     - Assets/Scenes/Tutorial.unity
     - Assets/Scripts/CharacterMovement/CharacterController.cs
     - Assets/Scripts/CharacterMovement/PlayerController.cs
+    - Assets/Scripts/PlayerFollow.cs
     - Packages/manifest.json
     - ProjectSettings/DynamicsManager.asset
     - ProjectSettings/TagManager.asset
     - 
-    m_Values: 010101010001010100010100
+    m_Values: 01010101010101010000010100
   RevisionSummary: added mouse controls
   ChangesSearchValue: 
   SelectedHistoryRevision: 
