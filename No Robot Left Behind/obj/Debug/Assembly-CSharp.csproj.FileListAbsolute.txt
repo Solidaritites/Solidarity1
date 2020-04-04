@@ -274,3 +274,5 @@ C:\Users\aprat\UnityProjects\Solidarity1\No Robot Left Behind\obj\Debug\Assembly
 C:\Users\aprat\UnityProjects\Solidarity1\No Robot Left Behind\obj\Debug\Assembly-CSharp.csproj.CopyComplete
 C:\Users\aprat\UnityProjects\Solidarity1\No Robot Left Behind\obj\Debug\Assembly-CSharp.dll
 C:\Users\aprat\UnityProjects\Solidarity1\No Robot Left Behind\obj\Debug\Assembly-CSharp.pdb
+C:\Users\aprat\UnityProjects\Solidarity1\No Robot Left Behind\Temp\bin\Debug\UnityEngine.WebGLModule.dll
+C:\Users\aprat\UnityProjects\Solidarity1\No Robot Left Behind\Temp\bin\Debug\UnityEngine.WebGLModule.pdb

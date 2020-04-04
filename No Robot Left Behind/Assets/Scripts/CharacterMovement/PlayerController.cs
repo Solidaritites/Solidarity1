@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftShift)
             || Input.GetKey(KeyCode.RightShift)
-            || Input.GetMouseButton(0))
+            || Input.GetMouseButton(1))
         {
             RaycastColliderPos.y = pos.y - 1;
             foreach (CharacterController character in Characters)
@@ -105,7 +105,7 @@ public class PlayerController : MonoBehaviour
             character.Move(Vector3.back);
             usingKeys = true;
         }
-        if (!usingKeys && Input.GetMouseButton(1))
+        if (!usingKeys && Input.GetMouseButton(0))
         {
             RaycastHit hit;
             Ray ray = Camera.ScreenPointToRay(Input.mousePosition);
